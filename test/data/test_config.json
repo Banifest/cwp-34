@@ -3,7 +3,7 @@
     "port": 9001
   },
   "db": {
-    "name": "cwp21",
+    "name": "test",
     "user": "root",
     "pass": "root",
     "options": {

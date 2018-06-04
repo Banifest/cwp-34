@@ -1,38 +1,21 @@
-class CacheService
-{
-    constructor()
-    {
-        const LRU = require('lru-cache');
-        this.logger = require('../services/Logger');
-        this.options =
-        {
-            max: 50000,
-            maxAge: 30000
-        };
-        this.cache = LRU(this.options);
+const LRU = require("lru-cache");
+
+class CacheService {
+
+    constructor() {
+        this.cache = LRU({
+            max: 5,
+            maxAge: 1000 * 5
+        })
     }
 
-    async set(req, data)
-    {
-        this.cache.set(req.originalUrl, data, 30000);
+    async set(req, data) {
+        this.cache.set(`${req.method}${req.originalUrl}`, data);
     }
 
-    async get(req)
-    {
-        console.log(this.cache.dump());
-        let answ = await this.cache.get(req.originalUrl);
-        if (answ)
-        {
-            this.logger.info(`FROM CACHE ${answ}`);
-        }
-        return answ;
-    }
-
-    async invalidate(req)
-    {
-
+    async get(req) {
+        return this.cache.get(`${req.method}${req.originalUrl}`);
     }
 }
-const cache = new CacheService();
 
-module.exports = cache;
+module.exports = CacheService;
