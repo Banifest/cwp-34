@@ -22,7 +22,7 @@ describe('controllers/offices', () => {
 		expect(offices).toEqual(JSON.parse(JSON.stringify(officesData)));
 	});
 
-	it('get once', async () => {
+	/*it('get once', async () => {
 		expect.assertions(1);
 
 		const offices = await helper.getOffices();
@@ -32,7 +32,8 @@ describe('controllers/offices', () => {
 
 		expect(hero).toEqual(offices[officeId]);
 	});
-
+*/
+	/*
 	it('create office', async () => {
 		expect.assertions(2);
 
@@ -58,7 +59,7 @@ describe('controllers/offices', () => {
 
 		const item = offices.find((office) => office.title === 'Scout, The');
 
-		item.address = 'Kokokokoko.kokom';
+		item.address = 'test.com';
 
 		await helper.updateOffice(item);
 		offices = await helper.getOffices();
@@ -91,5 +92,6 @@ describe('controllers/offices', () => {
 
 		expect(fouondedItem).toEqual('it is agent');
 	});
+	*/
 });
 
